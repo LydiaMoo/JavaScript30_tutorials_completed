@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    };
+
+    // Regular
+    console.log('hello');
+    // Interpolated
+    console.log('hello I am a %s string', 'poo');
+    // Styled
+    console.log('%c I am some great text', 'font-size:36px; background:red; text-shadow: 10px 3px;');
+    // warning!
+    console.warn('OH NOO');
+    // Error :|
+    console.error('opsie');
+    // Info
+    console.info('Bananas are curved because they grow towards the sun.');
+    // Testing
+    console.assert(5 !== 5, 'that is wrong!');
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), 'That is wrooooong!');
+    // clearing
+    // console.clear();
+    // Viewing DOM Elements
+    console.log(p); //shows element
+    console.dir(p); //children, dataset style etc
+    // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.groupEnd(`${dog.name}`)
+    });
+    // counting
+    console.count('6');
+    console.count('6');
+    console.count('6');
+    console.count('6');
+    console.count('6');
+    // timing
+    console.time('fetching data');
+    fetch('http://api.usno.navy.mil/moon/phase?date=01/17/2018&nump=48')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+      //tables
+      console.table(dogs); 
+
+
+
+  </script>
+</body>
+</html>
